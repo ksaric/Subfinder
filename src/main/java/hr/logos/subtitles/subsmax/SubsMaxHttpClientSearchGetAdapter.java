@@ -19,13 +19,13 @@ import java.net.URI;
  * @author pfh (Kristijan Šarić)
  */
 
-public class SubsMaxHttpClientAdapter implements HttpClientAdapter {
+public class SubsMaxHttpClientSearchGetAdapter implements HttpClientSearchGetAdapter {
 
     private final HttpClient httpClient;
     private final Provider<HttpPost> httpPostProvider;
 
     @Inject
-    public SubsMaxHttpClientAdapter(
+    public SubsMaxHttpClientSearchGetAdapter(
             final HttpClient httpClient,
             final Provider<HttpPost> httpPostProvider
     ) {

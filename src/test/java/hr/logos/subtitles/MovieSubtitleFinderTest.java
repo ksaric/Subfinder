@@ -8,7 +8,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Provides;
 import com.google.inject.util.Modules;
-import hr.logos.subtitles.subsmax.HttpClientAdapter;
+import hr.logos.subtitles.subsmax.HttpClientSearchGetAdapter;
 import org.apache.http.HttpResponse;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
@@ -21,16 +21,17 @@ import org.simpleframework.xml.core.Persister;
 import java.io.IOException;
 
 /**
- * @author pfh
+ * @author pfh (Kristijan Šarić)
  */
 
 public class MovieSubtitleFinderTest {
 
     public static final String AMERICAN_BEAUTY = "American Beauty";
     public static final String GARDEN_STATE = "Garden State";
+    public static final String DARK_KNIGHT = "The dark knight 2008";
 
     //    private HttpClient httpClient = Mockito.mock( HttpClient.class );
-    private HttpClientAdapter httpClientAdapter = Mockito.mock( HttpClientAdapter.class );
+    private HttpClientSearchGetAdapter httpClientSearchGetAdapter = Mockito.mock( HttpClientSearchGetAdapter.class );
     private Serializer serializer = Mockito.mock( Serializer.class );
 
     private Injector injector;
@@ -49,13 +50,39 @@ public class MovieSubtitleFinderTest {
         final HttpResponse response = Mockito.mock( HttpResponse.class );
 
         final String toString = getResourceToString( "the-dark-knight-2008.xml" );
-        Mockito.when( httpClientAdapter.fetchHttpXml( Mockito.anyString() ) ).thenReturn( toString );
+        Mockito.when( httpClientSearchGetAdapter.fetchHttpXml( MovieSubtitleFinder.SUBSMAX_URL + "The-dark-knight-2008-en" ) ).thenReturn( toString );
 
         //When
-        final Boolean isMovieFound = stringFinder.find( "The dark knight 2008" );
+        final Boolean isMovieFound = stringFinder.find( DARK_KNIGHT );
+        final String result = stringFinder.getResult();
 
         //Then
         Assert.assertThat( isMovieFound, Matchers.is( Boolean.TRUE ) );
+        Assert.assertThat( result, Matchers.not( Matchers.isEmptyOrNullString() ) );
+    }
+
+    @Test( expected = IllegalStateException.class )
+    public void testFindNull() throws Exception {
+        //Before
+        Finder<String> stringFinder = injector.getInstance( MovieSubtitleFinder.class );
+
+        //When
+        final Boolean isMovieFound = stringFinder.find( null );
+    }
+
+    @Test/*( expected = IllegalStateException.class )*/
+    public void testFindEmpty() throws Exception {
+        //Before
+        Finder<String> stringFinder = injector.getInstance( MovieSubtitleFinder.class );
+
+        //When
+        try {
+            final Boolean isMovieFound = stringFinder.find( "" );
+            Assert.fail();
+        } catch ( Exception e ) {
+            final String message = e.getMessage();
+            Assert.assertThat( "Find parameter cannot be NULL or EMPTY.", Matchers.equalTo( message ) );
+        }
     }
 
     private String getResourceToString( String fileName ) throws IOException {
@@ -69,7 +96,6 @@ public class MovieSubtitleFinderTest {
             stringBuilder.append( currentLine );
         }
 
-
         return stringBuilder.toString();
     }
 
@@ -81,15 +107,15 @@ public class MovieSubtitleFinderTest {
         protected void configure() {
         }
 
-        // todo: not mocked!
+        // Real implementation.
         @Provides
         public Serializer provideSerializer() {
             return new Persister();
         }
 
         @Provides
-        public HttpClientAdapter provideHttpClientAdapter() {
-            return httpClientAdapter;
+        public HttpClientSearchGetAdapter provideHttpClientAdapter() {
+            return httpClientSearchGetAdapter;
         }
     }
 }

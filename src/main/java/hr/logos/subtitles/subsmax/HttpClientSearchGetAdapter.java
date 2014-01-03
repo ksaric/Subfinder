@@ -4,7 +4,7 @@ package hr.logos.subtitles.subsmax;
  * @author pfh (Kristijan Šarić)
  */
 
-public interface HttpClientAdapter {
+public interface HttpClientSearchGetAdapter {
 
     String fetchHttpXml( String uri );
 
