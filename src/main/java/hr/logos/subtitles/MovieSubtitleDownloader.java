@@ -1,7 +1,6 @@
 package hr.logos.subtitles;
 
 import com.google.inject.Inject;
-import hr.logos.subtitles.subsmax.HttpClientDownloadAdapter;
 
 import java.io.File;
 

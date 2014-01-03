@@ -1,4 +1,4 @@
-package hr.logos.subtitles.subsmax;
+package hr.logos.subtitles;
 
 import java.io.InputStream;
 

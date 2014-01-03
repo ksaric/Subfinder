@@ -8,7 +8,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Provides;
 import com.google.inject.util.Modules;
-import hr.logos.subtitles.subsmax.HttpClientSearchGetAdapter;
+import hr.logos.subtitles.subsmax.SubsMaxMovieSubtitleFinder;
 import org.apache.http.HttpResponse;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
@@ -24,7 +24,7 @@ import java.io.IOException;
  * @author pfh (Kristijan Šarić)
  */
 
-public class MovieSubtitleFinderTest {
+public class SubsMaxMovieSubtitleFinderTest {
 
     public static final String AMERICAN_BEAUTY = "American Beauty";
     public static final String GARDEN_STATE = "Garden State";
@@ -45,12 +45,12 @@ public class MovieSubtitleFinderTest {
     @Test
     public void testFindDarkKnight() throws Exception {
         //Before
-        Finder<String> stringFinder = injector.getInstance( MovieSubtitleFinder.class );
+        Finder<String> stringFinder = injector.getInstance( SubsMaxMovieSubtitleFinder.class );
 
         final HttpResponse response = Mockito.mock( HttpResponse.class );
 
         final String toString = getResourceToString( "the-dark-knight-2008.xml" );
-        Mockito.when( httpClientSearchGetAdapter.fetchHttpXml( MovieSubtitleFinder.SUBSMAX_URL + "The-dark-knight-2008-en" ) ).thenReturn( toString );
+        Mockito.when( httpClientSearchGetAdapter.fetchHttpXml( SubsMaxMovieSubtitleFinder.SUBSMAX_URL + "The-dark-knight-2008-en" ) ).thenReturn( toString );
 
         //When
         final Boolean isMovieFound = stringFinder.find( DARK_KNIGHT );
@@ -64,7 +64,7 @@ public class MovieSubtitleFinderTest {
     @Test( expected = IllegalStateException.class )
     public void testFindNull() throws Exception {
         //Before
-        Finder<String> stringFinder = injector.getInstance( MovieSubtitleFinder.class );
+        Finder<String> stringFinder = injector.getInstance( SubsMaxMovieSubtitleFinder.class );
 
         //When
         final Boolean isMovieFound = stringFinder.find( null );
@@ -73,7 +73,7 @@ public class MovieSubtitleFinderTest {
     @Test/*( expected = IllegalStateException.class )*/
     public void testFindEmpty() throws Exception {
         //Before
-        Finder<String> stringFinder = injector.getInstance( MovieSubtitleFinder.class );
+        Finder<String> stringFinder = injector.getInstance( SubsMaxMovieSubtitleFinder.class );
 
         //When
         try {

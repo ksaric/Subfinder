@@ -1,6 +1,5 @@
 package hr.logos.subtitles;
 
-import hr.logos.subtitles.subsmax.HttpClientDownloadAdapter;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;

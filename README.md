@@ -5,9 +5,10 @@ A project designed to quickly find all the subtitles of a movie, series, or a re
 
 Requires Java 7.
 
-Using SubsMax subtitles.
+Currently using SubsMax subtitles. Using Guice Multibindings for a flexibile architecture(plugins for other sub providers).
 
 Ideas:
 
 Using ExecutorService, and than testing Actors and maybe STM(Akka)?
-Also, use advanced matching system - http://en.wikipedia.org/wiki/Category:String_matching_algorithms
+"Inspecting Multibindings or MapBindings" for an even more flexibile plugin solution?
+

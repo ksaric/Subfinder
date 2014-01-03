@@ -1,11 +1,10 @@
-package hr.logos.subtitles;
+package hr.logos.subtitles.subsmax;
 
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
 import com.google.inject.Inject;
-import hr.logos.subtitles.subsmax.HttpClientSearchGetAdapter;
-import hr.logos.subtitles.subsmax.Item;
-import hr.logos.subtitles.subsmax.SubsMaxAPI;
+import hr.logos.subtitles.Finder;
+import hr.logos.subtitles.HttpClientSearchGetAdapter;
 import org.apache.commons.lang3.StringUtils;
 import org.simpleframework.xml.Serializer;
 
@@ -13,7 +12,7 @@ import org.simpleframework.xml.Serializer;
  * @author pfh (Kristijan Šarić)
  */
 
-public class MovieSubtitleFinder implements Finder<String> {
+public class SubsMaxMovieSubtitleFinder implements Finder<String> {
 
     public static final String SUBSMAX_URL = "http://subsmax.com/api/50/";
     public static final String LANGUAGE = "-en";
@@ -24,7 +23,7 @@ public class MovieSubtitleFinder implements Finder<String> {
     private String subtitleDownloadLink = "";
 
     @Inject
-    public MovieSubtitleFinder(
+    public SubsMaxMovieSubtitleFinder(
             final HttpClientSearchGetAdapter httpClientSearchGetAdapter,
             final Serializer serializer
     ) {

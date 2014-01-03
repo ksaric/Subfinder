@@ -1,4 +1,4 @@
-package hr.logos.subtitles;
+package hr.logos.subtitles.subsmax;
 
 import com.google.inject.BindingAnnotation;
 
