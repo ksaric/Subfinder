@@ -19,8 +19,7 @@ public class SubmaxSubtitleSearchPluginModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        Multibinder<Finder<String>> uriBinder = Multibinder.newSetBinder( binder(), new TypeLiteral<Finder<String>>() {
-        } );
+        Multibinder<Finder<String, String>> uriBinder = Multibinder.newSetBinder( binder(), new TypeLiteral<Finder<String, String>>() {} );
         uriBinder.addBinding().to( SubsMaxMovieSubtitleFinder.class );
     }
 }

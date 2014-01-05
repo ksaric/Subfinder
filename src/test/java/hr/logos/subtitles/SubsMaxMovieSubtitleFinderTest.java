@@ -45,7 +45,7 @@ public class SubsMaxMovieSubtitleFinderTest {
     @Test
     public void testFindDarkKnight() throws Exception {
         //Before
-        Finder<String> stringFinder = injector.getInstance( SubsMaxMovieSubtitleFinder.class );
+        Finder<String, String> stringFinder = injector.getInstance( SubsMaxMovieSubtitleFinder.class );
 
         final HttpResponse response = Mockito.mock( HttpResponse.class );
 
@@ -61,10 +61,10 @@ public class SubsMaxMovieSubtitleFinderTest {
         Assert.assertThat( result, Matchers.not( Matchers.isEmptyOrNullString() ) );
     }
 
-    @Test( expected = IllegalStateException.class )
+    @Test(expected = IllegalStateException.class)
     public void testFindNull() throws Exception {
         //Before
-        Finder<String> stringFinder = injector.getInstance( SubsMaxMovieSubtitleFinder.class );
+        Finder<String, String> stringFinder = injector.getInstance( SubsMaxMovieSubtitleFinder.class );
 
         //When
         final Boolean isMovieFound = stringFinder.find( null );
@@ -73,7 +73,7 @@ public class SubsMaxMovieSubtitleFinderTest {
     @Test/*( expected = IllegalStateException.class )*/
     public void testFindEmpty() throws Exception {
         //Before
-        Finder<String> stringFinder = injector.getInstance( SubsMaxMovieSubtitleFinder.class );
+        Finder<String, String> stringFinder = injector.getInstance( SubsMaxMovieSubtitleFinder.class );
 
         //When
         try {

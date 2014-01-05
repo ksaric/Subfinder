@@ -10,16 +10,18 @@ import java.util.Set;
 
 public class Application {
 
-    private final Set<Finder<String>> subtitleFinder;
+    private final Set<Finder<String, String>> subtitleFinder;
 
     @Inject
-    public Application( final Set<Finder<String>> subtitleFinders ) {
+    public Application( final Set<Finder<String, String>> subtitleFinders ) {
         this.subtitleFinder = subtitleFinders;
     }
 
     public void findSubtitle( final String subtitle ) {
-        for ( Finder<String> finder : subtitleFinder ) {
+        for ( Finder<String, String> finder : subtitleFinder ) {
             finder.find( subtitle );
         }
+
+        // download them
     }
 }

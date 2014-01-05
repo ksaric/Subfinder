@@ -14,7 +14,11 @@ public class Main {
     public static void main( String[] args ) {
         // first args is the movie name...
 
-        Injector injector = Guice.createInjector( SubtitleModule.create(), SubsMaxModule.create(), SubmaxSubtitleSearchPluginModule.create() );
+        Injector injector = Guice.createInjector(
+                SubtitleModule.create(),
+                SubsMaxModule.create(),
+                SubmaxSubtitleSearchPluginModule.create()
+        );
 
         final Application application = injector.getInstance( Application.class );
 

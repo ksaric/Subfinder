@@ -12,7 +12,7 @@ import org.simpleframework.xml.Serializer;
  * @author pfh (Kristijan Šarić)
  */
 
-public class SubsMaxMovieSubtitleFinder implements Finder<String> {
+public class SubsMaxMovieSubtitleFinder implements Finder<String, String> {
 
     public static final String SUBSMAX_URL = "http://subsmax.com/api/50/";
     public static final String LANGUAGE = "-en";
