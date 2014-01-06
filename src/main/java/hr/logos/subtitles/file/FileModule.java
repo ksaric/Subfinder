@@ -1,6 +1,7 @@
 package hr.logos.subtitles.file;
 
 import com.google.inject.AbstractModule;
+import hr.logos.subtitles.FileSystemAdapter;
 
 /**
  * @author pfh (Kristijan Šarić)

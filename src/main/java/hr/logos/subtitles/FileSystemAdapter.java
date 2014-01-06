@@ -1,4 +1,4 @@
-package hr.logos.subtitles.file;
+package hr.logos.subtitles;
 
 import com.google.common.collect.*;
 

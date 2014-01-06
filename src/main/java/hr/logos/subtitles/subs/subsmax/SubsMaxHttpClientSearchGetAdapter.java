@@ -1,4 +1,4 @@
-package hr.logos.subtitles.subsmax;
+package hr.logos.subtitles.subs.subsmax;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.CharStreams;

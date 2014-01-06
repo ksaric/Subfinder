@@ -1,7 +1,7 @@
 package hr.logos.subtitles;
 
 import com.google.inject.AbstractModule;
-import hr.logos.subtitles.subsmax.SubsMaxHttpClientSearchGetAdapter;
+import hr.logos.subtitles.subs.subsmax.SubsMaxHttpClientSearchGetAdapter;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 

@@ -5,6 +5,7 @@ import com.google.common.base.Preconditions;
 import com.google.common.base.Predicate;
 import com.google.common.collect.*;
 import com.google.common.io.Files;
+import hr.logos.subtitles.FileSystemAdapter;
 
 import java.io.File;
 
@@ -21,6 +22,7 @@ public class DefaultFileSystemAdapter implements FileSystemAdapter {
         return Files.fileTreeTraverser().preOrderTraversal( searchFolder ).filter( getMoviesFilter() ).toList();
     }
 
+    // SRP!
     private final String[] movieFormatList = new String[]{"avi", "mkv"};
 
     private Predicate<? super File> getMoviesFilter() {

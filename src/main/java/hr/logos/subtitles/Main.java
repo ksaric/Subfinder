@@ -2,8 +2,8 @@ package hr.logos.subtitles;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import hr.logos.subtitles.subsmax.SubmaxSubtitleSearchPluginModule;
-import hr.logos.subtitles.subsmax.SubsMaxModule;
+import hr.logos.subtitles.subs.subsmax.SubmaxSubtitleSearchPluginModule;
+import hr.logos.subtitles.subs.subsmax.SubsMaxModule;
 
 /**
  * @author pfh (Kristijan Šarić)

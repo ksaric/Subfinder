@@ -1,6 +1,7 @@
 package hr.logos.subtitles.file;
 
 import com.google.common.collect.*;
+import hr.logos.subtitles.FileSystemAdapter;
 import hr.logos.subtitles.Finder;
 import org.hamcrest.Matchers;
 import org.junit.Assert;

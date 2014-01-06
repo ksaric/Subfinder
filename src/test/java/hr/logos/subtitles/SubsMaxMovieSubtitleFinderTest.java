@@ -8,7 +8,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Provides;
 import com.google.inject.util.Modules;
-import hr.logos.subtitles.subsmax.SubsMaxMovieSubtitleFinder;
+import hr.logos.subtitles.subs.subsmax.SubsMaxMovieSubtitleFinder;
 import org.apache.http.HttpResponse;
 import org.hamcrest.Matchers;
 import org.junit.Assert;

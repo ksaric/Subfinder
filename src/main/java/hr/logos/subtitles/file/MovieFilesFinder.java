@@ -2,6 +2,7 @@ package hr.logos.subtitles.file;
 
 import com.google.common.collect.*;
 import com.google.inject.Inject;
+import hr.logos.subtitles.FileSystemAdapter;
 import hr.logos.subtitles.Finder;
 
 import java.io.File;

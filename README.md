@@ -5,7 +5,8 @@ A project designed to quickly find all the subtitles of a movie, series, or a re
 
 Requires Java 7.
 
-Currently using SubsMax subtitles. Using Guice Multibindings for a flexibile architecture(plugins for other sub providers).
+Currently using SubsMax subtitles. Switch to http://www.api.subtitleseeker.com:82/?
+Using Guice Multibindings for a flexibile architecture(plugins for other sub providers).
 
 Ideas:
 
