@@ -24,7 +24,7 @@ public class MovieFilesFinderTest {
     );
 
     @Test
-    public void testFind() throws Exception {
+    public void testFindAll() throws Exception {
         //Before
         final FileSystemAdapter fileSystemAdapter = new FileSystemAdapter() {
             @Override
@@ -46,13 +46,24 @@ public class MovieFilesFinderTest {
     }
 
     @Test
-    public void testGetResult() throws Exception {
-
+    public void testFindSomeFiles() throws Exception {
         //Before
+        final FileSystemAdapter fileSystemAdapter = new FileSystemAdapter() {
+            @Override
+            public ImmutableList<File> getMovieFiles( String param ) {
+                return ImmutableList.copyOf( foundFiles );
+            }
+        };
+
+        Finder<String, List<File>> fileFinder = new MovieFilesFinder( fileSystemAdapter );
 
         //When
+        final Boolean aBoolean = fileFinder.find( "/home/kristijan/Downloads" );
+        final List<File> result = fileFinder.getResult();
 
         //Then
+        Assert.assertThat( aBoolean, Matchers.is( Boolean.TRUE ) );
+        Assert.assertThat( result, Matchers.not( Matchers.contains( new File( "/blabla/movie2.mkv" ) ) ) );
 
     }
 }

@@ -19,16 +19,7 @@ public class SubtitleModule extends AbstractModule {
 
     @Override
     protected void configure() {
-//        install( SubsMaxModule.create() );
-
-        // forcing architecture!
-//        requireBinding( HttpClient.class );
-//        requireBinding( HttpPost.class );
-
-        bind( Serializer.class ).to( Persister.class );             // todo : read-only
+        bind( Serializer.class ).to( Persister.class );
         bind( HttpClientSearchGetAdapter.class ).to( SubsMaxHttpClientSearchGetAdapter.class );
-
-//        bind( new TypeLiteral<Finder<String>>() {
-//        } ).annotatedWith( SubsMaxFinder.class ).to( SubsMaxMovieSubtitleFinder.class );
     }
 }
