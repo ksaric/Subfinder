@@ -1,8 +1,5 @@
 package hr.logos.subtitles;
 
-import com.google.common.base.Charsets;
-import com.google.common.io.CharSource;
-import com.google.common.io.Resources;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -17,8 +14,6 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
-
-import java.io.IOException;
 
 /**
  * @author pfh (Kristijan Šarić)
@@ -49,7 +44,7 @@ public class SubsMaxMovieSubtitleFinderTest {
 
         final HttpResponse response = Mockito.mock( HttpResponse.class );
 
-        final String toString = getResourceToString( "the-dark-knight-2008.xml" );
+        final String toString = ResourceUtils.getResourceToString( "the-dark-knight-2008.xml" );
         Mockito.when( httpClientSearchGetAdapter.fetchHttpXml( SubsMaxMovieSubtitleFinder.SUBSMAX_URL + "The-dark-knight-2008-en" ) ).thenReturn( toString );
 
         //When
@@ -83,20 +78,6 @@ public class SubsMaxMovieSubtitleFinderTest {
             final String message = e.getMessage();
             Assert.assertThat( "Find parameter cannot be NULL or EMPTY.", Matchers.equalTo( message ) );
         }
-    }
-
-    private String getResourceToString( String fileName ) throws IOException {
-        final CharSource charSource = Resources.asCharSource(
-                Resources.getResource( fileName ), Charsets.UTF_8
-        );
-
-        StringBuilder stringBuilder = new StringBuilder();
-
-        for ( String currentLine : charSource.readLines() ) {
-            stringBuilder.append( currentLine );
-        }
-
-        return stringBuilder.toString();
     }
 
     public class CustomTestModule extends AbstractModule {

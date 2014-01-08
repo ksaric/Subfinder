@@ -108,6 +108,12 @@
             <version>3.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.jetlang</groupId>
+            <artifactId>jetlang</artifactId>
+            <version>0.2.12</version>
+        </dependency>
+
         <!--<dependency>
             <groupId>net.sf.oval</groupId>
             <artifactId>oval</artifactId>
