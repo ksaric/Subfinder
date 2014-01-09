@@ -20,6 +20,7 @@ public interface SubtitleAnalyzable {
 
 }
 
+// for now force it in the same package, REMEBER not to forget this :)
 class SubtitleInfo {
     private Integer subtitleNumber;
 

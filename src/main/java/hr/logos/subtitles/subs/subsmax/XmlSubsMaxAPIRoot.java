@@ -12,7 +12,7 @@ import java.util.List;
  */
 
 @Root
-public class SubsMaxAPI {
+public class XmlSubsMaxAPIRoot {
 
     @Element( name = "title" )
     private String title;
@@ -33,7 +33,7 @@ public class SubsMaxAPI {
     private Integer foundResults;
 
     @ElementList( name = "items" )
-    private List<Item> items;
+    private List<XmlSubsMaxAPIItem> xmlSubsMaxAPIItems;
 
     public String getTitle() {
         return title;
@@ -83,12 +83,12 @@ public class SubsMaxAPI {
         this.foundResults = foundResults;
     }
 
-    public List<Item> getItems() {
-        return items;
+    public List<XmlSubsMaxAPIItem> getXmlSubsMaxAPIItems() {
+        return xmlSubsMaxAPIItems;
     }
 
-    public void setItems( List<Item> items ) {
-        this.items = items;
+    public void setXmlSubsMaxAPIItems( List<XmlSubsMaxAPIItem> xmlSubsMaxAPIItems ) {
+        this.xmlSubsMaxAPIItems = xmlSubsMaxAPIItems;
     }
 
     @Override
@@ -100,7 +100,7 @@ public class SubsMaxAPI {
                 .add( "language", language )
                 .add( "results", results )
                 .add( "foundResults", foundResults )
-                .add( "items", items )
+                .add( "xmlSubsMaxAPIItems", xmlSubsMaxAPIItems )
                 .toString();
     }
 }

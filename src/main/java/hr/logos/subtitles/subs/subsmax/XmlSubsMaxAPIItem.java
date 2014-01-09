@@ -7,7 +7,7 @@ import org.simpleframework.xml.Element;
  * @author pfh (Kristijan Šarić)
  */
 
-public class Item {
+public class XmlSubsMaxAPIItem {
 
     @Element( name = "title" )
     private String title;

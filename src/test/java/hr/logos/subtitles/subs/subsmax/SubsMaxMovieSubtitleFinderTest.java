@@ -1,11 +1,14 @@
-package hr.logos.subtitles;
+package hr.logos.subtitles.subs.subsmax;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Provides;
 import com.google.inject.util.Modules;
-import hr.logos.subtitles.subs.subsmax.SubsMaxMovieSubtitleFinder;
+import hr.logos.subtitles.Finder;
+import hr.logos.subtitles.HttpClientSearchGetAdapter;
+import hr.logos.subtitles.ResourceUtils;
+import hr.logos.subtitles.SubtitleModule;
 import org.apache.http.HttpResponse;
 import org.hamcrest.Matchers;
 import org.junit.Assert;

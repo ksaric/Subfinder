@@ -44,18 +44,18 @@ public class SubsMaxMovieSubtitleFinder implements Finder<String, String> {
 
             // javax.xml.stream.XMLStreamException: ParseError
             // check if XML format
-            final SubsMaxAPI subsMaxApi = serializer.read( SubsMaxAPI.class, httpResponse );
+            final XmlSubsMaxAPIRoot xmlSubsMaxApiRoot = serializer.read( XmlSubsMaxAPIRoot.class, httpResponse );
 
             // must have some subtitles
-            Preconditions.checkState( subsMaxApi.getItems().size() > 0, "No found subtitles." );
+            Preconditions.checkState( xmlSubsMaxApiRoot.getXmlSubsMaxAPIItems().size() > 0, "No found subtitles." );
 
-            if ( subsMaxApi.getItems() != null && !( subsMaxApi.getItems().size() > 0 ) )
+            if ( xmlSubsMaxApiRoot.getXmlSubsMaxAPIItems() != null && !( xmlSubsMaxApiRoot.getXmlSubsMaxAPIItems().size() > 0 ) )
                 return Boolean.FALSE;
 
             // set it on MAX value so we have an edge value for comparison
             Integer minDistance = Integer.MAX_VALUE;
 
-            findLink( param, subsMaxApi, minDistance );
+            findLink( param, xmlSubsMaxApiRoot, minDistance );
         } catch ( Exception e ) {
             e.printStackTrace();
             return Boolean.FALSE;
@@ -64,15 +64,15 @@ public class SubsMaxMovieSubtitleFinder implements Finder<String, String> {
         return Boolean.TRUE;
     }
 
-    private void findLink( String param, SubsMaxAPI subsMaxApi, Integer minDistance ) {
-        for ( Item item : subsMaxApi.getItems() ) {
-            final String filename = item.getFilename();
+    private void findLink( String param, XmlSubsMaxAPIRoot xmlSubsMaxApiRoot, Integer minDistance ) {
+        for ( XmlSubsMaxAPIItem xmlSubsMaxAPIItem : xmlSubsMaxApiRoot.getXmlSubsMaxAPIItems() ) {
+            final String filename = xmlSubsMaxAPIItem.getFilename();
 
             final Integer levenshteinDistance = StringUtils.getLevenshteinDistance( param, filename );
 
             if ( levenshteinDistance < minDistance ) {
                 minDistance = levenshteinDistance;
-                subtitleDownloadLink = item.getLink();
+                subtitleDownloadLink = xmlSubsMaxAPIItem.getLink();
             }
         }
     }

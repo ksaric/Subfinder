@@ -20,13 +20,14 @@ import java.net.URI;
  * @author pfh (Kristijan Šarić)
  */
 
-public class SubsMaxHttpClientSearchGetAdapter implements HttpClientSearchGetAdapter {
+public class DefaultHttpClientSearchGetAdapter implements HttpClientSearchGetAdapter {
 
     private final HttpClient httpClient;
+
     private final Provider<HttpPost> httpPostProvider;
 
     @Inject
-    public SubsMaxHttpClientSearchGetAdapter(
+    public DefaultHttpClientSearchGetAdapter(
             final HttpClient httpClient,
             final Provider<HttpPost> httpPostProvider
     ) {
@@ -35,7 +36,7 @@ public class SubsMaxHttpClientSearchGetAdapter implements HttpClientSearchGetAda
     }
 
     @Override
-    public String fetchHttpXml( String uri ) {
+    public String fetchHttpXml( final String uri ) {
 
         HttpResponse response = null;
 

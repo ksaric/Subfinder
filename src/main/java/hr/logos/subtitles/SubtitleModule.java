@@ -1,7 +1,7 @@
 package hr.logos.subtitles;
 
 import com.google.inject.AbstractModule;
-import hr.logos.subtitles.subs.subsmax.SubsMaxHttpClientSearchGetAdapter;
+import hr.logos.subtitles.subs.subsmax.DefaultHttpClientSearchGetAdapter;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
@@ -20,6 +20,6 @@ public class SubtitleModule extends AbstractModule {
     @Override
     protected void configure() {
         bind( Serializer.class ).to( Persister.class );
-        bind( HttpClientSearchGetAdapter.class ).to( SubsMaxHttpClientSearchGetAdapter.class );
+        bind( HttpClientSearchGetAdapter.class ).to( DefaultHttpClientSearchGetAdapter.class );
     }
 }
