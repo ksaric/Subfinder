@@ -3,6 +3,7 @@ package hr.logos.subtitles.subs.allsubs;
 import com.google.common.base.CharMatcher;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
+import com.google.inject.Inject;
 import hr.logos.subtitles.Finder;
 import hr.logos.subtitles.HttpClientSearchGetAdapter;
 import org.apache.commons.lang3.StringUtils;
@@ -27,6 +28,7 @@ public class AllSubsSubtitleFinder implements Finder<String, String> {
 
     private String subtitleDownloadLink;
 
+    @Inject
     public AllSubsSubtitleFinder(
             final HttpClientSearchGetAdapter httpClientSearchGetAdapter,
             final Serializer serializer
