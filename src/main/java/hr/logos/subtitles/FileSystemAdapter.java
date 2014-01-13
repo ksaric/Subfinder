@@ -7,8 +7,9 @@ import java.io.File;
 /**
  * @author pfh (Kristijan Šarić)
  */
-public interface FileSystemAdapter {
+public interface FileSystemAdapter extends FileAdapterByteReadable {
 
     ImmutableList<File> getMovieFiles( final String param );
 
+    ImmutableList<File> getNfoFiles( String param );
 }

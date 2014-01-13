@@ -31,6 +31,16 @@ public class MovieFilesFinderTest {
             public ImmutableList<File> getMovieFiles( String param ) {
                 return ImmutableList.copyOf( foundFiles );
             }
+
+            @Override
+            public ImmutableList<File> getNfoFiles( String param ) {
+                throw new RuntimeException( "This is not the focus. READ the code." );
+            }
+
+            @Override
+            public byte[] readAllBytes( File firstNfoFile ) {
+                throw new RuntimeException( "This is not the focus. READ the code." );
+            }
         };
 
         Finder<String, List<File>> fileFinder = new MovieFilesFinder( fileSystemAdapter );
@@ -52,6 +62,16 @@ public class MovieFilesFinderTest {
             @Override
             public ImmutableList<File> getMovieFiles( String param ) {
                 return ImmutableList.copyOf( foundFiles );
+            }
+
+            @Override
+            public ImmutableList<File> getNfoFiles( String param ) {
+                throw new RuntimeException( "This is not the focus. READ the code." );
+            }
+
+            @Override
+            public byte[] readAllBytes( File firstNfoFile ) {
+                throw new RuntimeException( "This is not the focus. READ the code." );
             }
         };
 
