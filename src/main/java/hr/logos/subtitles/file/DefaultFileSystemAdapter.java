@@ -35,7 +35,6 @@ public class DefaultFileSystemAdapter implements FileSystemAdapter {
         return files.filter( getNfoFilter() ).toList();
     }
 
-
     /**
      * Reads bytes from a file. No need for explicit conversions...
      * <p/>
