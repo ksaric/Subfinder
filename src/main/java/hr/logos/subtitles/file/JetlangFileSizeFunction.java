@@ -1,16 +1,18 @@
 package hr.logos.subtitles.file;
 
 import com.google.common.collect.*;
+import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.common.util.concurrent.MoreExecutors;
 import org.jetlang.channels.Channel;
 import org.jetlang.channels.MemoryChannel;
 import org.jetlang.core.Callback;
 import org.jetlang.fibers.Fiber;
 import org.jetlang.fibers.PoolFiberFactory;
 
+import java.io.File;
 import java.util.Collection;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -22,17 +24,26 @@ public class JetlangFileSizeFunction {
 
     private final AtomicLong folderSize = new AtomicLong( 0 );
 
-    public void test() {
-        ExecutorService service = Executors.newCachedThreadPool();
-        PoolFiberFactory fact = new PoolFiberFactory( service );
+    private final ListeningExecutorService listeningExecutorService;
+
+    // one class, one constructor! But this is a really special case
+
+    public JetlangFileSizeFunction( final ListeningExecutorService listeningExecutorService ) {
+        this.listeningExecutorService = listeningExecutorService;
+    }
+
+    public JetlangFileSizeFunction( final ExecutorService executorService ) {
+        this.listeningExecutorService = MoreExecutors.listeningDecorator( executorService );
+    }
+
+    public void searchInFiles( final File testPathname, final String searchString ) {
+
+        PoolFiberFactory fact = new PoolFiberFactory( listeningExecutorService );
 
         // create as many fibers as there are cores * 10
-
         Collection<Fiber> fileSizeFibers = Lists.newArrayList();
 
         final int fiberCount = Runtime.getRuntime().availableProcessors() * 10;
-
-        System.out.println( fiberCount );
 
         for ( int counter = 0; counter < fiberCount; counter++ ) {
             final Fiber fiber = fact.create();
@@ -79,7 +90,6 @@ public class JetlangFileSizeFunction {
 
 //        ChannelSubscription<Long> sub = new ChannelSubscription<>( fiber, onMsg );
 //        channel.subscribe( sub );
-
 
         try {
             countDownLatch.await( 5, TimeUnit.SECONDS );
